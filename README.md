@@ -54,3 +54,51 @@ git commit -m "First Commit"
 git remote add origin https://github.com/Vinicius-Luiz/my_portfolio_django
 git push origin master
 ```
+
+### Criar app Portfolio
+
+```bash
+rem comando para criar novo app
+python manage.py startapp portfolio
+```
+
+- Alterar `name = 'apps.portfolio'` em **apps.py**<br>
+
+- Adicionar `'apps.portfolio.apps.PortfolioConfig'` em `INSTALLED_APPS`<br>
+
+### Preparar Urls, Views e Templates
+
+- Em **views.py**
+```python
+# Criando uma rota para carregar a página principal
+from django.shortcuts import render
+
+def index(request):
+    return render(request, 'index.html')
+```
+
+- Em **urls.py** do app
+```python
+# Criar variável que contém todas as rotas do app
+from django.urls import path
+from apps.portfolio.views import index
+
+urlpatterns = [
+    path('', index)
+]
+```
+
+- Em **urls.py** do setup
+```python
+# Isolando as urls do apps
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('apps.portfolio.urls')),
+]
+```
+
+- Em **templates**<br>
+Criar a pasta `templates` e adicionar `[path.join(BASE_DIR, 'templates')] `em `TEMPLATES['DIRS']`
