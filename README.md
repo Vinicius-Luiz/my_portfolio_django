@@ -102,3 +102,19 @@ urlpatterns = [
 
 - Em **templates**<br>
 Criar a pasta `templates` e adicionar `[path.join(BASE_DIR, 'templates')] `em `TEMPLATES['DIRS']`
+
+### Configurar arquivos estáticos
+
+- Em **settings.py**
+```python
+# Configurar arquivos estáticos
+STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'setup\static')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+```
+
+`python manage.py collectstatic` para coletar todos os arquivos estáticos
