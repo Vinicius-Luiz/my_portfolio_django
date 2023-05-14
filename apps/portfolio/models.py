@@ -30,22 +30,22 @@ class Link(models.Model):
     
     def link_type_icon(self):
         if self.type == 'LINKEDIN':
-            return 'bi-linkedin'
+            return 'fa-brands fa-linkedin-in'
         
         elif self.type == 'GITHUB':
-            return 'bi-github'
+            return 'fa-brands fa-github'
         
         elif self.type == 'KAGGLE':
-            return 'bi-link-45deg'
+            return 'fa-solid fa-k'
         
         elif self.type == 'CERTIFICATE':
-            return 'bi-journal-medical'
+            return 'fa-sharp fa-solid fa-file-certificate'
         
         elif self.type == 'INSTAGRAM':
-            return 'bi bi-instagram'
+            return 'fa-brands fa-instagram'
         
         else:
-            return 'bi-link-45deg'
+            return 'fa-solid fa-link'
 
 class Project(models.Model):
     PROJECT_TYPE = [
@@ -59,11 +59,22 @@ class Project(models.Model):
     image        = models.ImageField(upload_to="fotos/%Y/%m/%d/", blank=True)
     type         = models.CharField(max_length=128, choices=PROJECT_TYPE)
     published    = models.BooleanField(default=True)
+    developed_at = models.DateField(null = True, blank = True)
     created_at   = models.DateTimeField(auto_now_add=True)
     updated_at   = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'{self.title} ({self.type})'
+    
+    def project_type_span(self):
+        if self.type == 'PY':
+            return 'badge text-bg-warning'
+        elif self.type == 'ML':
+            return 'badge text-bg-primary'
+        elif self.type == 'DA':
+            return 'badge text-bg-success'
+        else:
+            return 'badge text-bg-secondary'
 
 class Skill(models.Model):
     SKILL_TYPE = [
@@ -92,7 +103,7 @@ class AboutLink(models.Model):
         return f'{self.about.name} ({self.link.type})'
     
 class ProjectLink(models.Model):
-    project    = models.ForeignKey(Project, on_delete=models.CASCADE, related_name = 'a_links')
+    project    = models.ForeignKey(Project, on_delete=models.CASCADE, related_name = 'p_links')
     link       = models.ForeignKey(Link, on_delete=models.CASCADE, related_name = 'projects_l')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

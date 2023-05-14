@@ -10,14 +10,17 @@ body{
     background-color: var(--gray-200);
 }
 
-#about {
-    height: var(--default-height);
+i {
+    font-size: larger;
 }
 
-#about p {
+#about, #project {
+    min-height: var(--default-height);
+}
+
+#about p, #project p {
     font-weight: 550;
 }
-
 
 .name{
     border-bottom: 2px solid var(--dark);

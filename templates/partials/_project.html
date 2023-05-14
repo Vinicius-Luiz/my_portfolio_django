@@ -1,0 +1,22 @@
+<div id="project" class="container d-flex flex-column aligm-items-center my-5 shadow-lg bg-light">
+    <h2 class="text-center my-4">Projetos</h2>
+    <div class="row d-flex flex-row justify-content-evenly mx-5">
+        {% for project in projects %}
+        <div class="col col-4 m-3 card" style="width: 20rem;">
+            <img src="{{project.image.url}}" class="card-img-top" alt="{{project.title}}">
+            <div class="card-body">
+                <h5 class="card-title">{{project.title}}</h5>
+                <span class="{{project.project_type_span}}">{{project.get_type_display}}</span>
+                <p class="card-text mt-4">{{project.description | safe}}</p>
+                {% for p_link in project.p_links.all %}
+                <a class="col link-underline link-underline-opacity-0 mr-5" target="_blank" href="{{ p_link.link.url }}"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
+                    data-bs-title="This top tooltip is themed via CSS variables.">
+                    <i class="{{p_link.link.link_type_icon}} btn btn-dark"></i>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
