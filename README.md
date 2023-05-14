@@ -2,9 +2,7 @@
 
 Url: **em breve**
 
-## Preparação
-
-### Ambiente virtual
+## Ambiente virtual
 
 **Criar ambiente virtual**
 ```bash
@@ -16,7 +14,7 @@ python -m venv .
 type nul > ".env"
 ```
 
-### Projeto Django
+## Projeto Django
 **Criar projeto Django**
 ```bash
 pip install django
@@ -34,7 +32,7 @@ django-admin startproject setup .
 - Alterar `LANGUAGE_CODE` para `pt-br`
 - Alterar `TIME_ZONE` para `America/Sao Paulo`
 
-### Configurar Git e GitHub
+## Configurar Git e GitHub
 ```bash
 pip install python-dotenv
 ```
@@ -55,7 +53,7 @@ git remote add origin https://github.com/Vinicius-Luiz/my_portfolio_django
 git push origin master
 ```
 
-### Criar app Portfolio
+## Criar app Portfolio
 
 ```bash
 rem comando para criar novo app
@@ -66,7 +64,7 @@ python manage.py startapp portfolio
 
 - Adicionar `'apps.portfolio.apps.PortfolioConfig'` em `INSTALLED_APPS`<br>
 
-### Preparar Urls, Views e Templates
+## Preparar Urls, Views e Templates
 
 - Em **views.py**
 ```python
@@ -103,7 +101,7 @@ urlpatterns = [
 - Em **templates**<br>
 Criar a pasta `templates` e adicionar `[path.join(BASE_DIR, 'templates')] `em `TEMPLATES['DIRS']`
 
-### Configurar arquivos estáticos
+## Configurar arquivos estáticos
 
 - Em **settings.py**
 ```python

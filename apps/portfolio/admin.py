@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.portfolio.models import About, Link, Project, Skill, ProjectLink, SkillLink
+from apps.portfolio.models import About, Link, Project, Skill, AboutLink, ProjectLink, SkillLink
 
 
 class AboutAdmin(admin.ModelAdmin):
@@ -26,6 +26,11 @@ class SkillAdmin(admin.ModelAdmin):
     list_filter = ("type",)
     list_editable = ("published",)
 
+class AboutLinkAdmin(admin.ModelAdmin):
+    list_display = ("about", "link")
+    list_display_links = ("about",)
+    search_fields = ("about",)
+    
 class ProjectLinkAdmin(admin.ModelAdmin):
     list_display = ("project", "link")
     list_display_links = ("project",)
@@ -40,5 +45,6 @@ admin.site.register(About, AboutAdmin)
 admin.site.register(Link, LinkAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Skill, SkillAdmin)
+admin.site.register(AboutLink, AboutLinkAdmin)
 admin.site.register(ProjectLink, ProjectLinkAdmin)
 admin.site.register(SkillLink, SkillLinkAdmin)

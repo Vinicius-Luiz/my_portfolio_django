@@ -1,0 +1,27 @@
+{% for about in abouts %}
+<div id="about" class="container text-center d-flex aligm-items-center my-4 shadow-lg bg-light ">
+    <div class="row justify-content-md-center p-2">
+        <div class="col col-lg-4 d-flex flex-column  align-items-center justify-content-center">
+            <div class="row row-4 profile_image">
+                <img class="rounded-circle w-50 m-auto" src="{{about.image.url}}">
+            </div>
+            <div class="row row-4 my-4 w-75 name">
+                <h2><strong>{{about.name}}</strong></h2>
+            </div>
+            <div class="row row-4 w-75">
+                {% for a_link in about.a_links.all %}
+                <a class="col col-{12//about.a_links.all.count} link-underline link-underline-opacity-0" target="_blank"
+                    href="{{ a_link.link.url }}">
+                    <i class="{{a_link.link.link_type_icon}} text-dark"></i>
+                    <p class="text-dark">{{a_link.link.name}}</p>
+                </a>
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="col col-lg-8 m-auto">
+            <p>{{about.about_me_text | safe}}</p>
+        </div>
+    </div>
+</div>
+{% endfor %}
