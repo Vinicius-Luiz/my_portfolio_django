@@ -1,6 +1,14 @@
 <div id="skill" class="container d-flex flex-column aligm-items-center my-5 shadow-lg bg-light">
     <h2 class="text-center my-4">Habilidades técnicas</h2>
-    <div class="row mx-5"> <!-- d-flex flex-row justify-content-evenly -->
+
+    <form class="row m-auto" action="{% url 'search_skill' %}">
+        {% for key, type_display, type_button in skill_choices %}
+        <button class="col {{type_button}} mx-5 my-2" name="skill" value="{{key}}"><b>{{type_display}}</b></button>
+        {% endfor %}
+        <button class="col btn btn-dark btn-sm mx-5 my-2" name="skill" value="ALL"><b>Todos</b></button>
+    </form>
+
+    <div class="row mx-5 mt-5">
         {% for skill in skills %}
         <div class="col col-3 m-2 card" style="width: 17rem;">
             <img src="{{skill.image.url}}" class="card-img-top img-thumbnail border border-0" alt="{{skill.title}}">

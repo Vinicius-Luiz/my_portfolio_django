@@ -1,4 +1,5 @@
 from django.db import models
+from apps.portfolio.utils import project_type_span, link_type_icon, skill_type_span, skill_type_icon
 
 class About(models.Model):
     name          = models.CharField(max_length = 128, null = False, blank = False)
@@ -23,6 +24,7 @@ class Link(models.Model):
     name = models.CharField(max_length = 128, null = False, blank = False)
     type = models.CharField(max_length=128, choices = LINK_TYPE)
     url  = models.URLField()
+    is_contact = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -30,24 +32,10 @@ class Link(models.Model):
         return f'{self.name} ({self.type})'
     
     def link_type_icon(self):
-        if self.type == 'LINKEDIN':
-            return 'fa-brands fa-linkedin-in'
-        
-        elif self.type == 'GITHUB':
-            return 'fa-brands fa-github'
-        
-        elif self.type == 'KAGGLE':
-            return 'fa-brands fa-kaggle'
-        
-        elif self.type == 'CERTIFICATE':
-            return 'fa-solid fa-medal'
-        
-        elif self.type == 'INSTAGRAM':
-            return 'fa-brands fa-instagram'
-        elif self.type == 'EMAIL':
-            return 'fa-solid fa-envelope'
-        else:
-            return 'fa-solid fa-link'
+        type_icon = link_type_icon.get(self.type)
+        if not type_icon:
+            type_icon = link_type_icon.get('OTHER')
+        return type_icon
 
 class Project(models.Model):
     PROJECT_TYPE = [
@@ -69,14 +57,10 @@ class Project(models.Model):
         return f'{self.title} ({self.type})'
     
     def project_type_span(self):
-        if self.type == 'PY':
-            return 'badge text-bg-warning'
-        elif self.type == 'ML':
-            return 'badge text-bg-primary'
-        elif self.type == 'DA':
-            return 'badge text-bg-success'
-        else:
-            return 'badge text-bg-secondary'
+        type_span = project_type_span.get(self.type)
+        if not type_span:
+            type_span = project_type_span.get('OTHER')
+        return type_span
 
 class Skill(models.Model):
     SKILL_TYPE = [
@@ -98,32 +82,16 @@ class Skill(models.Model):
         return f'{self.title} ({self.type})'
     
     def skill_type_span(self):
-        if self.type == 'LP':
-            return 'badge text-bg-primary'
-        elif self.type == 'F':
-            return 'badge text-bg-success'
-        elif self.type == 'BD':
-            return 'badge text-bg-danger'
-        elif self.type == 'D':
-            return 'badge text-bg-warning'
-        elif self.type == 'W':
-            return 'badge text-bg-info'
-        else:
-            return 'badge text-bg-secondary'
+        type_span = skill_type_span.get(self.type)
+        if not type_span:
+            type_span = skill_type_span.get('OTHER')
+        return type_span
     
     def skill_type_icon(self):
-        if self.type == 'LP':
-            return 'fa-solid fa-laptop-binary'
-        elif self.type == 'F':
-            return 'fa-regular fa-screwdriver-wrench'
-        elif self.type == 'BD':
-            return 'fa-solid fa-database'
-        elif self.type == 'D':
-            return 'fa-sharp fa-regular fa-table'
-        elif self.type == 'W':
-            return 'fa-duotone fa-browser'
-        else:
-            return 'fa-solid fa-user'
+        type_icon = skill_type_icon.get(self.type)
+        if not type_icon:
+            type_icon = skill_type_icon.get('OTHER')
+        return type_icon
 
 class AboutLink(models.Model):
     about      = models.ForeignKey(About, on_delete=models.CASCADE, related_name = 'a_links')

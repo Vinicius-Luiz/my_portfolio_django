@@ -7,10 +7,11 @@ class AboutAdmin(admin.ModelAdmin):
     list_display_links = ("id","name")
 
 class LinkAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "type")
+    list_display = ("id", "name", "type", "is_contact")
     list_display_links = ("id","name")
     search_fields = ("name",)
     list_filter = ("type",)
+    list_editable = ("is_contact",)
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ("id", "title", "type", "published")

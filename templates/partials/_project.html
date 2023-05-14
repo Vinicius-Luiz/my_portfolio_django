@@ -1,6 +1,14 @@
 <div id="project" class="container d-flex flex-column aligm-items-center my-5 shadow-lg bg-light">
     <h2 class="text-center my-4">Projetos</h2>
-    <div class="row d-flex flex-row justify-content-evenly mx-5">
+
+    <form class="row w-75 m-auto" action="{% url 'search_project' %}">
+        {% for key, type_display, type_button in project_choices %}
+        <button class="col {{type_button}} mx-5 my-2" name="project" value="{{key}}"><b>{{type_display}}</b></button>
+        {% endfor %}
+        <button class="col btn btn-dark btn-sm mx-5 my-2" name="project" value="ALL"><b>Todos</b></button>
+    </form>
+
+    <div class="row d-flex flex-row justify-content-evenly mx-5  mt-5">
         {% for project in projects %}
         <div class="col col-4 m-3 card" style="width: 20rem;">
             <img src="{{project.image.url}}" class="card-img-top img-thumbnail border border-0" alt="{{project.title}}">
