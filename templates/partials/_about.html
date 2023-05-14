@@ -13,7 +13,9 @@
                 <a class="col link-underline link-underline-opacity-0 p-3" target="_blank"
                     href="{{ a_link.link.url }}">
                     <i class="{{a_link.link.link_type_icon}} text-dark "></i>
+                    {% if a_link.link.type == 'EMAIL' %}
                     <p class="text-dark">{{a_link.link.name}}</p>
+                    {% endif %}
                 </a>
                 {% endfor %}
             </div>

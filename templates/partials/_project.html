@@ -3,7 +3,7 @@
     <div class="row d-flex flex-row justify-content-evenly mx-5">
         {% for project in projects %}
         <div class="col col-4 m-3 card" style="width: 20rem;">
-            <img src="{{project.image.url}}" class="card-img-top img-thumbnail" alt="{{project.title}}">
+            <img src="{{project.image.url}}" class="card-img-top img-thumbnail border border-0" alt="{{project.title}}">
             <div class="card-body">
                 <h5 class="card-title">{{project.title}}</h5>
                 <span class="{{project.project_type_span}}">{{project.get_type_display}}</span>

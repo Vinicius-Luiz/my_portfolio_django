@@ -17,6 +17,7 @@ class Link(models.Model):
         ('KAGGLE', 'Kaggle'),
         ('CERTIFICATE', 'Certificado'),
         ('INSTAGRAM', 'Instagram'),
+        ('EMAIL', 'E-mail'),
         ('OTHER', 'Outros'),
     ]
     name = models.CharField(max_length = 128, null = False, blank = False)
@@ -43,7 +44,8 @@ class Link(models.Model):
         
         elif self.type == 'INSTAGRAM':
             return 'fa-brands fa-instagram'
-        
+        elif self.type == 'EMAIL':
+            return 'fa-solid fa-envelope'
         else:
             return 'fa-solid fa-link'
 

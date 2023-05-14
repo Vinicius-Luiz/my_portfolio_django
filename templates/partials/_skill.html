@@ -3,7 +3,7 @@
     <div class="row mx-5"> <!-- d-flex flex-row justify-content-evenly -->
         {% for skill in skills %}
         <div class="col col-3 m-2 card" style="width: 17rem;">
-            <img src="{{skill.image.url}}" class="card-img-top img-thumbnail" alt="{{skill.title}}">
+            <img src="{{skill.image.url}}" class="card-img-top img-thumbnail border border-0" alt="{{skill.title}}">
             <div class="card-body">
                 <div class="d-flex flex-column mb-3">
                     <h5 class="card-title text-center">{{skill.title}}

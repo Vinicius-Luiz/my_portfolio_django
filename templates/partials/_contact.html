@@ -1,0 +1,16 @@
+{% for about in abouts %}
+<div id="contact" class="container d-flex flex-column aligm-items-center my-5 shadow-lg bg-light">
+    <h2 class="text-center my-4">Contato</h2>
+    <div class="row d-flex flex-row justify-content-evenly mx-5">
+        {% for a_link in about.a_links.all %}
+        <a class="col link-underline link-underline-opacity-0 py-3 m-0 d-flex justify-content-evenly aligm-items-center"
+            target="_blank" href="{{ a_link.link.url }}">
+            <div class="d-flex flex-column text-center m-0 p-0">
+                <i class="{{a_link.link.link_type_icon}} text-dark"></i>
+                <p class="text-dark">{{a_link.link.name}}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}

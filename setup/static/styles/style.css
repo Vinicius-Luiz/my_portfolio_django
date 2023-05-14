@@ -15,11 +15,11 @@ i {
     font-size: larger;
 }
 
-#about a {
+#about a, #contact a {
     transition: 1s;
 }
 
-#about a:hover {
+#about a:hover, #contact a:hover {
     background-color: var(--gray-200);
 }
 
@@ -32,11 +32,15 @@ i {
     border-left: 4px solid var(--gray-800);
 }
 
+#contact {
+    font-size: larger;
+}
+
 #about, #project, #skill {
     min-height: var(--default-height);
 }
 
-#about p, #project p, #skill p {
+#about p, #project p, #skill p, #contact p {
     font-weight: 550;
 }
 
