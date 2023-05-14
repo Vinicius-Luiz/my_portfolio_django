@@ -1,6 +1,7 @@
 :root {
-    --dark: #212529;
     --gray-200: #e9ecef;
+    --gray-800: #343a40;
+    --dark: #212529;
     --default-height: 70vh;
   }
 
@@ -14,11 +15,28 @@ i {
     font-size: larger;
 }
 
-#about, #project {
+#about a {
+    transition: 1s;
+}
+
+#about a:hover {
+    background-color: var(--gray-200);
+}
+
+#skill a {
+    transition: 1s;
+    border-left: 4px solid transparent;
+}
+
+#skill a:hover {
+    border-left: 4px solid var(--gray-800);
+}
+
+#about, #project, #skill {
     min-height: var(--default-height);
 }
 
-#about p, #project p {
+#about p, #project p, #skill p {
     font-weight: 550;
 }
 

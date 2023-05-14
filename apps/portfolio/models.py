@@ -36,10 +36,10 @@ class Link(models.Model):
             return 'fa-brands fa-github'
         
         elif self.type == 'KAGGLE':
-            return 'fa-solid fa-k'
+            return 'fa-brands fa-kaggle'
         
         elif self.type == 'CERTIFICATE':
-            return 'fa-sharp fa-solid fa-file-certificate'
+            return 'fa-solid fa-medal'
         
         elif self.type == 'INSTAGRAM':
             return 'fa-brands fa-instagram'
@@ -80,7 +80,9 @@ class Skill(models.Model):
     SKILL_TYPE = [
         ('LP', 'Linguagens de Programação'),
         ('F', 'Ferramentas'),
-        ('BF', 'Bibliotecas e Frameworks'),
+        ('BD', 'Banco de Dados'),
+        ('D', 'Bibliotecas para dados'),
+        ('W', 'Aplicação Web'),
     ]
 
     title = models.CharField(max_length = 256, null = False, blank = False)
@@ -92,6 +94,34 @@ class Skill(models.Model):
 
     def __str__(self):
         return f'{self.title} ({self.type})'
+    
+    def skill_type_span(self):
+        if self.type == 'LP':
+            return 'badge text-bg-primary'
+        elif self.type == 'F':
+            return 'badge text-bg-success'
+        elif self.type == 'BD':
+            return 'badge text-bg-danger'
+        elif self.type == 'D':
+            return 'badge text-bg-warning'
+        elif self.type == 'W':
+            return 'badge text-bg-info'
+        else:
+            return 'badge text-bg-secondary'
+    
+    def skill_type_icon(self):
+        if self.type == 'LP':
+            return 'fa-solid fa-laptop-binary'
+        elif self.type == 'F':
+            return 'fa-regular fa-screwdriver-wrench'
+        elif self.type == 'BD':
+            return 'fa-solid fa-database'
+        elif self.type == 'D':
+            return 'fa-sharp fa-regular fa-table'
+        elif self.type == 'W':
+            return 'fa-duotone fa-browser'
+        else:
+            return 'fa-solid fa-user'
 
 class AboutLink(models.Model):
     about      = models.ForeignKey(About, on_delete=models.CASCADE, related_name = 'a_links')

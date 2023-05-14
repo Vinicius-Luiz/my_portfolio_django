@@ -1,0 +1,24 @@
+<div id="skill" class="container d-flex flex-column aligm-items-center my-5 shadow-lg bg-light">
+    <h2 class="text-center my-4">Habilidades técnicas</h2>
+    <div class="row mx-5"> <!-- d-flex flex-row justify-content-evenly -->
+        {% for skill in skills %}
+        <div class="col col-3 m-2 card" style="width: 17rem;">
+            <img src="{{skill.image.url}}" class="card-img-top img-thumbnail" alt="{{skill.title}}">
+            <div class="card-body">
+                <div class="d-flex flex-column mb-3">
+                    <h5 class="card-title text-center">{{skill.title}}
+                    </h5>
+                    <span class="{{skill.skill_type_span}}">{{skill.get_type_display}}</span>
+                </div>
+                {% for s_link in skill.s_links.all %}
+                <a class="link-underline link-underline-opacity-0 mb-2 ps-2 row" href="{{ s_link.link.url }}"
+                    target="_blank">
+                    <i class="col-2 {{s_link.link.link_type_icon}} m-auto p-1 btn btn-dark"></i>
+                    <p class="col-10 text-dark m-auto">{{s_link.link.name}}</p>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
