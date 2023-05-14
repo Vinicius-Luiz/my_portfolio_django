@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'America/Sao Paulo'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -128,6 +128,14 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Media Files
+
+# A pasta "media" é criada na raiz do projeto Django e é usada para armazenar os arquivos de mídia enviados pelos usuários.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# O Django irá procurar os arquivos de mídia na pasta definida em MEDIA_ROOT usando a URL http://example.com/media/.
+MEDIA_URL = "/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

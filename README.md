@@ -118,3 +118,31 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ```
 
 `python manage.py collectstatic` para coletar todos os arquivos estáticos
+
+## Django Admin
+
+```bash
+rem comando para criar um superusuário
+python manage.py createsuperuser vlsf2
+```
+
+## Configurando Imagens
+```python
+# A pasta "media" é criada na raiz do projeto Django e é usada para armazenar os arquivos de mídia enviados pelos usuários.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# O Django irá procurar os arquivos de mídia na pasta definida em MEDIA_ROOT usando a URL http://example.com/media/.
+MEDIA_URL = "/media/"
+```
+
+- Em **urls.py** de setup
+```python
+# Isso indicará ao Django que ele precisa usar as referências que inserimos em settings.py
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('apps.portfolio.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```
