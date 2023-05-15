@@ -144,3 +144,11 @@ urlpatterns = [
     path('', include('apps.portfolio.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
+
+## Deploy
+1. Instalar o gunicorn com: `pip install gunicorn`
+2. Atualizar requiriments.txt: `pip freeze > requiriments.txt`
+3. Criar arquivos `Procfile` e `runtime.txt` na pasta raiz
+4. ver versão do python através do comando `python --version`
+5. Inserir versão do Python no arquivo `runtime` no formato específico. Ex: **Python 3.9.12** para **python-3.9.12**
+6. Inserir no arquivo `Procfile`: web: `gunicorn <nome_do_projeto>.wsgi --log-file -`
