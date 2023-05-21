@@ -37,4 +37,4 @@ def index(request):
         , 'project_choices': project_choices
         , 'skill_choices': skill_choices
     }
-    return render(request, 'portfolio\index.html', data)
+    return render(request, 'portfolio/index.html', data)
