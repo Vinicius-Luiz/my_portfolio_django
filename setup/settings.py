@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', default='django-insecure-w64eqdxl%&)-!w-z4!
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = 'RENDER' not in os.environ
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*', 'vinicius-luiz-portfolio.onrender.com']
 
@@ -145,8 +145,11 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+WHITENOISE_MANIFEST_STRICT = False
 
 # Media Files
 
@@ -160,8 +163,6 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
 
 # Log
 LOGGING = {
