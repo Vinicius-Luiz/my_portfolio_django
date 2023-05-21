@@ -1,2 +1,4 @@
 venv
 .env
+logfile.log
+setup\__pycache__
