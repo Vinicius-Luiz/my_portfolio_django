@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', default='django-insecure-w64eqdxl%&)-!w-z4!
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = 'RENDER' not in os.environ
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*', 'vinicius-luiz-portfolio.onrender.com']
 
