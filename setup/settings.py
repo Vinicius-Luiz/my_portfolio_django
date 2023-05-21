@@ -14,6 +14,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from os import path
 import os
+import dj_database_url
 
 load_dotenv()
 
@@ -25,13 +26,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = str(os.getenv('SECRET_KEY'))
-SECRET_KEY = 'django-insecure-w64eqdxl%&)-!w-z4!h^=0c@o9cvir*_c(=ixbm66!qkk-pj+w'
+SECRET_KEY = os.getenv('SECRET_KEY', default='django-insecure-w64eqdxl%&)-!w-z4!h^=0c@o9cvir*_c(=ixbm66!qkk-pj+w')
+# SECRET_KEY = 'django-insecure-w64eqdxl%&)-!w-z4!h^=0c@o9cvir*_c(=ixbm66!qkk-pj+w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
+# DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'localhost']
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -44,12 +50,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fontawesomefree',
-    'apps.portfolio.apps.PortfolioConfig'
+    'apps.portfolio.apps.PortfolioConfig',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -77,6 +85,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'setup.wsgi.application'
 
+CORS_ALLOWED_ORIGINS = True
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -87,6 +97,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {'default': dj_database_url.config(
+#     default= BASE_DIR / 'db.sqlite3')}
+#     # default='sqlite:////path-to-my/database.sqlite')}
 
 
 # Password validation
