@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Instala as dependências
-pip install -r requirements.txt
+pip install -r requiriments.txt
 
 # Executa as migrações do banco de dados
 python manage.py migrate
