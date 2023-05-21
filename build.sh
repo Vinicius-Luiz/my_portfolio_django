@@ -1,13 +1,7 @@
 #!/bin/bash
 
-# Instala as dependências
+# Install Dependencies
 pip install -r requiriments.txt
 
-# Executa as migrações do banco de dados
+# Run Migration
 python manage.py migrate
-
-# Coleta os arquivos estáticos
-python manage.py collectstatic --noinput
-
-# Inicia o servidor da aplicação
-python manage.py runserver
