@@ -85,7 +85,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'setup.wsgi.application'
 
-CORS_ALLOWED_ORIGINS = True
+# CORS_ALLOWED_ORIGINS = True
 
 
 # Database
